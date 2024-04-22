@@ -1,0 +1,109 @@
+/* Propri�t�s globales de la page */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "exo-normal";
+  src: url("Exo-Regular.otf");
+  color: rgb(41, 45, 36);
+}
+
+body {
+  font-family: "calibri";
+  background-color: white;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  color: rgba(47, 69, 91, 1);
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0;
+}
+
+p {
+  width: 75%;
+  margin: auto;
+  text-align: left;
+  margin-bottom: 0.2em;
+}
+
+#tab_photos {
+  width: 75%;
+  margin: auto;
+  margin-top: 2em;
+  border-spacing: 10px;
+}
+
+td {
+  border: solid black 2px;
+  background-color: white;
+}
+
+/*
+.radio-btn{
+  display: block;
+  align-items: center;
+  justify-content: center;
+}*/
+
+
+
+#date1,
+#heure1 {
+  display: inline-block;
+  width: 49%;
+  color: orange;
+  font-size: 1.5em;
+}
+
+#date1 {
+  text-align: left;
+  margin-left: 0.8em;
+}
+
+#heure1 {
+  text-align: right;
+}
+
+
+
+#img_top
+{
+	width : 50px;
+	height : 50px;
+}
+/***********Bouton To Top***********/
+.to-top {
+	background: rgb(210, 124, 124);
+	position: fixed;
+	bottom: 16px;
+	right:32px;
+	width:50px;
+	height:50px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size:32px;
+	color:#1f1f1f;
+	text-decoration: none;
+	opacity:0;
+	pointer-events: none;
+	transition: all .4s;
+  }
+
+  .to-top:hover{
+	color: lightcyan;
+  }
+  
+  .to-top.active {
+	bottom:32px;
+	pointer-events: auto;
+	opacity:1;
+  }
