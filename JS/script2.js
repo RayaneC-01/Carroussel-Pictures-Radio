@@ -16,6 +16,7 @@ for (i = 0; i < 9; i++) {
     }
   }
 
+
   function survolMenu() {
     if (this.style.backgroundColor == "white") {
       this.style.backgroundColor = "rgb(180, 200, 220)";
@@ -48,7 +49,7 @@ for (i = 0; i < 10; i++) {
 
     let newElementImg = document.createElement("img");
     newElementImg.src = "Images/article.png";
-    newElementImg.id = "images" + i+j;
+    newElementImg.id = "images" + i + j;
     newElementImg.alt = "Images Chocolat";
     newElementTd.appendChild(newElementImg);
 
@@ -89,7 +90,7 @@ document.addEventListener('click', clickImage);
 
 // function clickImage() {
 // if(click.value == this.getAttribute('src') =="Images/article.png"){
-    
+
 //   this.setAttribute('src',"Images/C.png");
 // }
 // else if(this.getAttribute('src') == "Images/C.png")
@@ -97,49 +98,42 @@ document.addEventListener('click', clickImage);
 //   this.setAttribute('src',"Images/C++.png");
 // }
 // }
-function clickImage(){
-  switch(document.test.field.value){
-     case "one":
-       document.querySelectorAll("slide").innerHTML = "<img src='Images/article.png'>";
-       break;
-     case "two":
-        document.querySelectorAll("slide").innerHTML = "<img src='Images/C.png'>";
-        break;
-     case "three":
-        document.querySelectorAll("slide").innerHTML = "<img src='Images/C++.png'>";
-        break;
+function clickImage() {
+  switch (document.test.field.value) {
+    case "one":
+      document.querySelectorAll("slide").innerHTML = "<img src='Images/article.png'>";
+      break;
+    case "two":
+      document.querySelectorAll("slide").innerHTML = "<img src='Images/C.png'>";
+      break;
+    case "three":
+      document.querySelectorAll("slide").innerHTML = "<img src='Images/C++.png'>";
+      break;
   }
 }
 
-for(let d=0;d<50;d++)
-{
-	change[d].addEventListener('click',changeImage);
+for (let d = 0; d < 50; d++) {
+  change[d].addEventListener('click', changeImage);
 }
 
-function changeImage()
-{
-	
+function changeImage() {
 
-	if(this.getAttribute('src') == "Images/article.png")
-	{
-		this.setAttribute('src',"Images/C.png");
-	}
-	 else if(this.getAttribute('src') == "Images/C.png")
-	 		{
-	 			this.setAttribute('src',"Images/C++.png");
-	 		}
-	 		else if(this.getAttribute('src') == "Images/C++.png")
-	 		{
-	 			this.setAttribute('src',"Images/JavaLogo.png");
-	 		}
-	 		else if(this.getAttribute('src') == "Images/JavaLogo.png")
-	 		{
-	 			this.setAttribute('src',"Images/jsLogo.png");
-	 		}
-	 		else if(this.getAttribute('src') == "Images/jsLogo.png")
-	 		{
-	 			this.setAttribute('src',"Images/article.png");
-	 		}
+
+  if (this.getAttribute('src') == "Images/article.png") {
+    this.setAttribute('src', "Images/C.png");
+  }
+  else if (this.getAttribute('src') == "Images/C.png") {
+    this.setAttribute('src', "Images/C++.png");
+  }
+  else if (this.getAttribute('src') == "Images/C++.png") {
+    this.setAttribute('src', "Images/JavaLogo.png");
+  }
+  else if (this.getAttribute('src') == "Images/JavaLogo.png") {
+    this.setAttribute('src', "Images/jsLogo.png");
+  }
+  else if (this.getAttribute('src') == "Images/jsLogo.png") {
+    this.setAttribute('src', "Images/article.png");
+  }
 }
 
 
