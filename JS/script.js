@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'Images/C.png', 'Images/C++.png', 'Images/JavaLogo.png', 'Images/jsLogo.png'
   ];
 
+
   // Création des lignes et colonnes avec des images et des boutons radio
   for (let i = 0; i < rows; i++) {
     let row = table.insertRow();
