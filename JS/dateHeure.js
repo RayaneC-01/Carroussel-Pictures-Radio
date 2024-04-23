@@ -44,6 +44,7 @@ function toggleCouleurDate() {
 	}
 }
 
+
 // Fonction pour changer aléatoirement la couleur de la date et de l'heure
 function couleurDateAleatoire() {
 	let r = Math.floor(Math.random() * 256);
