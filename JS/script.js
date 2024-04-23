@@ -1,9 +1,6 @@
-const slides = document.querySelectorAll('.carrousel-slides img');
-const radioButtons = document.querySelectorAll('.carrousel-buttons input[type="radio"]');
-
 // Création du Tableau
 const elementTb = document.getElementById('tab_photos');
-const numRows = 4;// Nombre de lignes 
+const numRows = 4; // Nombre de lignes 
 const numCols = 4; // Nombre de colonnes
 
 // Compteur pour les cellules de tableau
@@ -11,6 +8,14 @@ let cellCounter = 0;
 
 let heightImg = 90;
 let widthImg = 90;
+
+// Tableau des chemins des images
+const imagePaths = [
+  'Images/C++.png',
+  'Images/C.png',
+  'Images/JavaLogo.png',
+  'Images/jsLogo.png'
+];
 
 // Boucles pour créer les lignes et les colonnes
 for (let i = 0; i < numRows; i++) {
@@ -21,90 +26,71 @@ for (let i = 0; i < numRows; i++) {
   for (let j = 0; j < numCols; j++) {
     // Crée une nouvelle cellule (<td>)
     let newElementTd = document.createElement('td');
+    newElementTd.style.textAlign = 'center'; // Centrer le contenu
     newElementTr.appendChild(newElementTd);
 
-    // Crée un élément <p> avec la classe "p1"
-    let textBox = document.createElement('p');
-    textBox.className = 'p1';
-    textBox.textContent = 'Logo';
-    textBox.style.color = '#2f455b';
-    textBox.style.textAlign = 'center';
-    textBox.style.fontFamily = 'Verdana';
-    textBox.style.fontSize = '18px';
-    newElementTd.appendChild(textBox);
-
-    // Création du carrousel à partir du code HTML
+    // Crée un élément de carrousel contenant les images
     const carrouselContainer = document.createElement('div');
     carrouselContainer.classList.add('carrousel-container');
 
     const carrouselSlides = document.createElement('div');
     carrouselSlides.classList.add('carrousel-slides');
+    carrouselSlides.style.display = 'flex'; // Affiche les images dans une ligne
 
-    const images = [
-      'Images/C++.png',
-      'Images/C.png',
-      'Images/JavaLogo.png',
-      'Images/jsLogo.png'
-    ];
-
-    images.forEach((src, index) => {
+    // Ajoute chaque image au carrousel
+    imagePaths.forEach((path, index) => {
       const img = document.createElement('img');
-      img.src = src;
+      img.src = path;
       img.height = heightImg;
       img.width = widthImg;
-      img.alt = 'Texte alternatif pour votre image';
-      img.style.objectFit = 'cover';
       img.alt = `Image ${index + 1}`;
+      img.style.margin = '0 auto'; // Centre l'image dans la cellule
+      img.style.display = index === 0 ? 'block' : 'none'; // Affiche la première image, cache les autres
       carrouselSlides.appendChild(img);
     });
 
-    const carrouselButtons = document.createElement('div');
-    carrouselButtons.classList.add('carrousel-buttons');
+    // Crée un groupe de boutons radio
+    const radioGroup = document.createElement('div');
+    radioGroup.classList.add('carrousel-buttons');
 
-    for (let k = 0; k < images.length; k++) {
-      const radioButton = document.createElement('input');
-      radioButton.setAttribute('type', 'radio');
-      newElementTd.style.textAlign = "center";
-      radioButton.setAttribute('name', `slide_${cellCounter}`);
-      radioButton.setAttribute('value', k.toString());
-      radioButton.id = `radio_${cellCounter}_${k}`;
-      carrouselButtons.appendChild(radioButton);
+    // Ajoute un bouton radio pour chaque image
+    imagePaths.forEach((path, index) => {
+      const radioBtn = document.createElement('input');
+      radioBtn.type = 'radio';
+      radioBtn.name = `carrousel-${cellCounter}`;
+      radioBtn.value = index;
+      radioGroup.appendChild(radioBtn);
+    });
 
-      const label = document.createElement('label');
-      label.setAttribute('for', `radio_${cellCounter}_${k}`);
-      carrouselButtons.appendChild(label);
-      /*label.style.width = '15px';
-    label.style.height = '15px';
-    label.style.backgroundColor = 'black';
-    label.style.borderRadius = '50%';
-    label.style.margin = '0 5px';
-    label.style.cursor = 'pointer';
-    */
-    }
-
-    // Ajout du carrousel au document
+    // Ajoute le carrousel et les boutons radio à la cellule du tableau
     newElementTd.appendChild(carrouselContainer);
     carrouselContainer.appendChild(carrouselSlides);
-    carrouselContainer.appendChild(carrouselButtons);
+    carrouselContainer.appendChild(radioGroup);
 
-    // Incrémenter le compteur de cellules de tableau
+    // Incrémente le compteur de cellules de tableau
     cellCounter++;
   }
 }
 
-// Écouteur d'événement pour les boutons radio
-radioButtons.forEach((button) => {
-  button.addEventListener('change', (event) => {
-    const selectedValue = parseInt(event.target.value);
-    showSlide(selectedValue);
+// Sélectionne toutes les images du carrousel
+const slides = document.querySelectorAll('.carrousel-slides img');
+// Sélectionne tous les boutons radio du carrousel
+const radioButtons = document.querySelectorAll('.carrousel-buttons input[type="radio"]');
+
+// Ajoute un écouteur d'événements à chaque bouton radio
+radioButtons.forEach((button, index) => {
+  button.addEventListener('change', () => {
+    // Cache toutes les images
+    slides.forEach((slide) => {
+      slide.style.display = 'none';
+    });
+
+    // Affiche l'image correspondante dans toutes les cellules
+    slides[index].style.display = 'block';
   });
 });
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-  });
-}
+
 
 /**********Bouton ScrollTop**********/
 const toTop = document.querySelector(".to-top");
@@ -125,4 +111,4 @@ function scrollToTop() {
 }
 
 window.addEventListener("scroll", handleScroll);
-toTop.addEventListener("click", scrollToTop);
+toTop.addEventListener("click", scrollToTop); // Fait défiler vers le haut lorsqu'on clique sur le bouton
