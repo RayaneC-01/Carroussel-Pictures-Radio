@@ -3,15 +3,14 @@ const radioButtons = document.querySelectorAll('.carrousel-buttons input[type="r
 
 // Création du Tableau
 const elementTb = document.getElementById('tab_photos');
-// Nombre de lignes et de colonnes
-const numRows = 8;
-const numCols = 4;
+const numRows = 4;// Nombre de lignes 
+const numCols = 4; // Nombre de colonnes
 
 // Compteur pour les cellules de tableau
 let cellCounter = 0;
 
-let heightImg = 110;
-let widthImg = 110;
+let heightImg = 90;
+let widthImg = 90;
 
 // Boucles pour créer les lignes et les colonnes
 for (let i = 0; i < numRows; i++) {
@@ -51,10 +50,10 @@ for (let i = 0; i < numRows; i++) {
     images.forEach((src, index) => {
       const img = document.createElement('img');
       img.src = src;
-	  img.height = heightImg;
-	  img.width = widthImg;
-	  img.alt = 'Texte alternatif pour votre image';
-	  img.style.objectFit = 'cover';
+      img.height = heightImg;
+      img.width = widthImg;
+      img.alt = 'Texte alternatif pour votre image';
+      img.style.objectFit = 'cover';
       img.alt = `Image ${index + 1}`;
       carrouselSlides.appendChild(img);
     });
@@ -65,7 +64,7 @@ for (let i = 0; i < numRows; i++) {
     for (let k = 0; k < images.length; k++) {
       const radioButton = document.createElement('input');
       radioButton.setAttribute('type', 'radio');
-	  newElementTd.style.textAlign = "center";
+      newElementTd.style.textAlign = "center";
       radioButton.setAttribute('name', `slide_${cellCounter}`);
       radioButton.setAttribute('value', k.toString());
       radioButton.id = `radio_${cellCounter}_${k}`;
@@ -74,13 +73,13 @@ for (let i = 0; i < numRows; i++) {
       const label = document.createElement('label');
       label.setAttribute('for', `radio_${cellCounter}_${k}`);
       carrouselButtons.appendChild(label);
-	  /*label.style.width = '15px';
-	label.style.height = '15px';
-	label.style.backgroundColor = 'black';
-	label.style.borderRadius = '50%';
-	label.style.margin = '0 5px';
-	label.style.cursor = 'pointer';
-	*/
+      /*label.style.width = '15px';
+    label.style.height = '15px';
+    label.style.backgroundColor = 'black';
+    label.style.borderRadius = '50%';
+    label.style.margin = '0 5px';
+    label.style.cursor = 'pointer';
+    */
     }
 
     // Ajout du carrousel au document
@@ -107,24 +106,23 @@ function showSlide(index) {
   });
 }
 
-  /**********Bouton ScrollTop**********/
-  const toTop = document.querySelector(".to-top");
-  
-  function handleScroll() {
-	if (window.scrollY > 160) {
-	  toTop.classList.add("active");
-	} else {
-	  toTop.classList.remove("active");  
-	}
+/**********Bouton ScrollTop**********/
+const toTop = document.querySelector(".to-top");
+
+function handleScroll() {
+  if (window.scrollY > 160) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
   }
-  
-  function scrollToTop() {
-	window.scrollTo({
-	  top: 0,
-	  behavior: "smooth"
-	});
-  }
-  
-  window.addEventListener("scroll", handleScroll);
-  toTop.addEventListener("click", scrollToTop);
-  
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+window.addEventListener("scroll", handleScroll);
+toTop.addEventListener("click", scrollToTop);
