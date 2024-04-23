@@ -1,147 +1,94 @@
-// // Création du Tableau
-// const elementTb = document.getElementById('tab_photos');
-// const numRows = 4; // Nombre de lignes 
-// const numCols = 4; // Nombre de colonnes
-
-// // Compteur pour les cellules de tableau
-// let cellCounter = 0;
-
-// let heightImg = 90;
-// let widthImg = 90;
-
-// // Tableau des chemins des images
-// const imagePaths = [
-//   'Images/C++.png',
-//   'Images/C.png',
-//   'Images/JavaLogo.png',
-//   'Images/jsLogo.png'
-// ];
-
-// // Boucles pour créer les lignes et les colonnes
-// for (let i = 0; i < numRows; i++) {
-//   // Crée une nouvelle ligne (<tr>)
-//   let newElementTr = document.createElement('tr');
-//   elementTb.appendChild(newElementTr);
-
-//   for (let j = 0; j < numCols; j++) {
-//     // Crée une nouvelle cellule (<td>)
-//     let newElementTd = document.createElement('td');
-//     newElementTd.style.textAlign = 'center'; // Centrer le contenu
-//     newElementTr.appendChild(newElementTd);
-
-//     // Crée un élément de carrousel contenant les images
-//     const carrouselContainer = document.createElement('div');
-//     carrouselContainer.classList.add('carrousel-container');
-
-//     const carrouselSlides = document.createElement('div');
-//     carrouselSlides.classList.add('carrousel-slides');
-//     carrouselSlides.style.display = 'flex'; // Affiche les images dans une ligne
-
-//     // Ajoute chaque image au carrousel
-//     imagePaths.forEach((path, index) => {
-//       const img = document.createElement('img');
-//       img.src = path;
-//       img.height = heightImg;
-//       img.width = widthImg;
-//       img.alt = `Image ${index + 1}`;
-//       img.style.margin = '0 auto'; // Centre l'image dans la cellule
-//       img.style.display = index === 0 ? 'block' : 'none'; // Affiche la première image, cache les autres
-//       carrouselSlides.appendChild(img);
-//     });
-
-//     // Crée un groupe de boutons radio
-//     const radioGroup = document.createElement('div');
-//     radioGroup.classList.add('carrousel-buttons');
-
-//     // Ajoute un bouton radio pour chaque image
-//     imagePaths.forEach((path, index) => {
-//       const radioBtn = document.createElement('input');
-//       radioBtn.type = 'radio';
-//       radioBtn.name = `carrousel-${cellCounter}`;
-//       radioBtn.value = index;
-//       radioGroup.appendChild(radioBtn);
-//     });
-
-//     // Ajoute le carrousel et les boutons radio à la cellule du tableau
-//     newElementTd.appendChild(carrouselContainer);
-//     carrouselContainer.appendChild(carrouselSlides);
-//     carrouselContainer.appendChild(radioGroup);
-
-//     // Incrémente le compteur de cellules de tableau
-//     cellCounter++;
-//   }
-// }
-
-// // Sélectionne toutes les images du carrousel
-// const slides = document.querySelectorAll('.carrousel-slides img');
-// // Sélectionne tous les boutons radio du carrousel
-// const radioButtons = document.querySelectorAll('.carrousel-buttons input[type="radio"]');
-
-// // Ajoute un écouteur d'événements à chaque bouton radio
-// radioButtons.forEach((button, index) => {
-//   button.addEventListener('change', () => {
-//     // Cache toutes les images
-//     slides.forEach((slide) => {
-//       slide.style.display = 'none';
-//     });
-
-//     // Affiche l'image correspondante dans toutes les cellules
-//     slides[index].style.display = 'block';
-//   });
-// });
-
-
-
-// /**********Bouton ScrollTop**********/
-// const toTop = document.querySelector(".to-top");
-
-// function handleScroll() {
-//   if (window.scrollY > 160) {
-//     toTop.classList.add("active");
-//   } else {
-//     toTop.classList.remove("active");
-//   }
-// }
-
-// function scrollToTop() {
-//   window.scrollTo({
-//     top: 0,
-//     behavior: "smooth"
-//   });
-// }
-
-// window.addEventListener("scroll", handleScroll);
-// toTop.addEventListener("click", scrollToTop); // Fait défiler vers le haut lorsqu'on clique sur le bouton
-
-// JavaScript pour créer la table
+// JavaScript pour créer la table avec des images et des boutons radio
 document.addEventListener('DOMContentLoaded', function () {
   // Création de la table
   let table = document.createElement('table');
   table.id = 'tab_photos';
 
   // Nombre de lignes et de colonnes
-  let rows = 2; // Modifier le nombre de lignes
-  let cols = 2; // Modifier le nombre de colonnes
+  let rows = 3; // Modifier le nombre de lignes
+  let cols = 3; // Modifier le nombre de colonnes
 
-  // Création des lignes et colonnes
+  // Tableau des chemins d'accès des images
+  let imagePaths = [
+    'Images/C.png', 'Images/C++.png', 'Images/JavaLogo.png', 'Images/jsLogo.png'
+  ];
+
+  // Création des lignes et colonnes avec des images et des boutons radio
   for (let i = 0; i < rows; i++) {
     let row = table.insertRow();
     for (let j = 0; j < cols; j++) {
       let cell = row.insertCell();
-      cell.innerHTML = `
-      <img src="" alt="">
-      <div class="controls">
-        <input type="radio" name="image_${i}_${j}" value="1" checked>
-        <input type="radio" name="image_${i}_${j}" value="2">
-        <input type="radio" name="image_${i}_${j}" value="3">
-        <input type="radio" name="image_${i}_${j}" value="4">
-      </div>
-    `;
-      cell.style.textAlign = "center";
+      cell.style.textAlign = "center"; // Centrer le contenu de la cellule
+      // Ajouter les images dans la cellule
+      let imagesContainer = document.createElement('div');
+      imagesContainer.classList.add('images-container');
+      for (let k = 0; k < 4; k++) {
+        let imagePath = imagePaths[k];
+        let img = document.createElement('img');
+        img.src = imagePath;
+        img.style.width = "100px"; // Modifier la largeur de l'image
+        img.style.height = "100px"; // Modifier la hauteur de l'image
+        img.style.objectFit = "cover"; // Utiliser object-fit: cover
+
+        img.alt = "Logo of Programming langage";
+        img.classList.add('photo');
+        if (k !== 0) {
+          img.style.display = 'none'; // Masquer toutes les images sauf la première
+        }
+        imagesContainer.appendChild(img);
+      }
+      cell.appendChild(imagesContainer);
+
+      // Ajouter les boutons radio
+      let div = document.createElement('div');
+      div.classList.add('controls');
+      for (let l = 0; l < 4; l++) {
+        let radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = `image_${i}_${j}`;
+        radio.value = l;
+        if (l === 0) {
+          radio.checked = true;
+        }
+        radio.addEventListener('change', function () {
+          let selectedImageIndex = parseInt(this.value);
+          let images = this.parentElement.parentElement.querySelector('.images-container').querySelectorAll('.photo');
+          images.forEach((img, index) => {
+            img.style.display = (index === selectedImageIndex) ? 'block' : 'none';
+          });
+        });
+        div.appendChild(radio);
+      }
+      cell.appendChild(div);
     }
   }
 
   // Ajout de la table au corps du document
   document.body.appendChild(table);
 });
+
+
+
+/**********Bouton ScrollTop**********/
+const toTop = document.querySelector(".to-top");
+
+function handleScroll() {
+  if (window.scrollY > 160) {
+    toTop.classList.add("active");
+  } else {
+    toTop.classList.remove("active");
+  }
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+window.addEventListener("scroll", handleScroll);
+toTop.addEventListener("click", scrollToTop); // Fait défiler vers le haut lorsqu'on clique sur le bouton
+
+
 
